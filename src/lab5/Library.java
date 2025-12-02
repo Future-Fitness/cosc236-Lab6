@@ -49,19 +49,19 @@ public class Library {
 		if (book != null)
 			catalog.remove(book); // book stays with the member who has it
 	}
-	public void showMembers() {
-		Iterator<Member> memberIterator = members.iterator();
-	    while(memberIterator.hasNext()) {
-		   	 Member member = memberIterator.next();
-		   	 System.out.println(member);
-	    }
-	}
+	
 	public void showBooks() {
-		Iterator<Book> bookIterator = catalog.iterator();
-	    while(bookIterator.hasNext()) {
-		   	 Book book = bookIterator.next();
-		   	 System.out.println(book); // book.toString()
-	    }
+		System.out.println("\n*** Books in Library:");
+		for (Book book : catalog) {
+			System.out.println(book + " - Available: " + book.getIsAvailable());
+		}
+	}
+	
+	public void showMembers() {
+		System.out.println("\n*** Members in Library:");
+		for (Member member : members) {
+			System.out.println(member + " - Books borrowed: " + member.borrowedBooksCount());
+		}
 	}
 	public int booksCount() {
 		return catalog.size();
