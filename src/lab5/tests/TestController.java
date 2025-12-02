@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import lab5.Member;
 import lab5.Library;
+import lab5.BorrowingService;
 import lab5.LibrarianController;
 
 class TestController {
@@ -24,9 +25,22 @@ class TestController {
 		this.librarian = new LibrarianController(); // Fresh library: one member, three books
 		this.library = librarian.getLibrary(); 
 		librarian.addMember(memberName);
-		librarian.addBook(bookTitle1);
-		librarian.addBook(bookTitle2);
-		librarian.addBook(bookTitle3);
+		librarian.addAudioBook(bookTitle1);
+		librarian.addAudioBook(bookTitle2);
+		librarian.addAudioBook(bookTitle3);
+	}
+	
+	//Part 8 test case
+	@Test
+	void createDifferentBookTypes() {
+		librarian.addPaperBook("Harry Potter");
+		assertEquals(library.findBookByTitle("Harry Potter").toString(), "Paper Book: Harry Potter");
+		
+		librarian.addEbook("Percy Jackson");
+		assertEquals(library.findBookByTitle("Percy Jackson").toString(), "E-Book: Percy Jackson");
+
+		librarian.addAudioBook("Lord of The Rings");
+		assertEquals(library.findBookByTitle("Lord of The Rings").toString(), "Audio Book: Lord of The Rings");
 	}
 
 	@Test
